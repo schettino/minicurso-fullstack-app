@@ -4,6 +4,7 @@
 
 import {combineReducers} from 'redux';
 import {LOCATION_CHANGE} from 'react-router-redux';
+import homeReducer from './containers/HomePage/reducer';
 
 /*
  * routeReducer
@@ -26,9 +27,9 @@ const routeReducer = combineReducers({location});
 /**
  * Creates the main reducer with the dynamically injected ones
  */
-export default function createReducer(injectedReducers) {
+export default function createReducer() {
   return combineReducers({
     route: routeReducer,
-    ...injectedReducers,
+    home: homeReducer,
   });
 }
