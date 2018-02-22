@@ -4,7 +4,9 @@ import createHistory from 'history/createBrowserHistory';
 import {ConnectedRouter} from 'react-router-redux';
 import {Provider} from 'react-redux';
 
+import 'semantic-ui-css/semantic.min.css';
 import './styles/globals.css';
+
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './configureStore';
