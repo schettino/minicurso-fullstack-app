@@ -18,6 +18,10 @@ class HomePage extends React.Component {
     this.props.dispatch(filterCoins(value));
   };
 
+  navigate = coinName => {
+    this.props.history.push(`/${coinName}`);
+  };
+
   renderCoins = () => {
     const {coinlist, searchlist} = this.props;
     if (!coinlist.length) return;
@@ -36,7 +40,10 @@ class HomePage extends React.Component {
             animation="fade down"
             duration={250 * index}
             transitionOnMount>
-            <Segment size="tiny" padded>
+            <Segment
+              onClick={() => this.navigate(item.coinName)}
+              size="tiny"
+              padded>
               <Header as="h2">
                 <Image inline size="tiny" circular src={item.imageUrl} />
                 <Header.Content>
@@ -88,6 +95,8 @@ function mapStateToProps(state) {
 HomePage.propTypes = {
   coinlist: PropTypes.array.isRequired,
   searchlist: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(HomePage);

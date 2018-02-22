@@ -1,14 +1,13 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
+import {withRouter} from 'react-router';
 import {Segment, Container} from 'semantic-ui-react';
-// import logo from '../../assets/logo.svg';
 
 import HomePage from '../HomePage';
 import CoinPage from '../CoinPage';
 import NotFoundPage from '../NotFoundPage';
 
 class App extends React.PureComponent {
-  handleItemClick = () => {};
   render() {
     return (
       <div>
@@ -24,4 +23,4 @@ class App extends React.PureComponent {
   }
 }
 
-export default App;
+export default withRouter(App);
