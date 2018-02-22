@@ -1,15 +1,17 @@
-import {all, call} from 'redux-saga/effects';
-import {delay} from 'redux-saga';
+import {all, call, takeLatest, put} from 'redux-saga/effects';
+import * as types from './constants';
+import * as actions from './actions';
+import request from '../../utils/request';
 
-function* helloWorldSaga() {
-  let i = 0;
-  while (true) {
-    yield call(console.log, `Hello world from a saga #${i}`);
-    yield call(delay, 5000);
-    i = i + 1;
+export function* loadCoinlist(action) {
+  try {
+    const {coinlist} = yield call(request, '/coinlist');
+    yield put(actions.loadCoinlisttOk(coinlist));
+  } catch (error) {
+    yield put(actions.loadCoinlistError(error));
   }
 }
 
 export default function* saga() {
-  yield all([helloWorldSaga()]);
+  yield all([takeLatest(types.LOAD_COINLIST, loadCoinlist)]);
 }
