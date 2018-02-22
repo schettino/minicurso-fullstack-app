@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Segment, Input, Transition, Image, Header} from 'semantic-ui-react';
-import {loadCoinlist} from './actions';
+import {loadCoinlist, filterCoins} from './actions';
 
 class HomePage extends React.Component {
   componentWillMount() {
@@ -12,6 +12,11 @@ class HomePage extends React.Component {
   componentDidMount() {
     setTimeout(() => this.searchField.focus(), 750);
   }
+
+  handleChange = ev => {
+    const {value} = ev.target;
+    this.props.dispatch(filterCoins(value));
+  };
 
   renderCoins = () => {
     const {coinlist, searchlist} = this.props;
@@ -55,6 +60,8 @@ class HomePage extends React.Component {
               ref={searchField => {
                 this.searchField = searchField;
               }}
+              value={this.props.searchTerm}
+              onChange={this.handleChange}
               icon="btc"
               transparent
               iconPosition="left"
@@ -74,6 +81,7 @@ function mapStateToProps(state) {
   return {
     coinlist: state.home.coinlist,
     searchlist: state.home.searchlist,
+    searchTerm: state.home.searchTerm,
   };
 }
 
