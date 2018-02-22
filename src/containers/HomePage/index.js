@@ -1,9 +1,30 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Segment, Input, Transition} from 'semantic-ui-react';
 
 class HomePage extends React.Component {
+  componentDidMount() {
+    setTimeout(() => this.searchField.focus(), 500);
+  }
+
   render() {
-    return <h1>This is the HomePage Component ({this.props.number})</h1>;
+    return (
+      <Transition animation="slide down" duration={500} transitionOnMount>
+        <Segment floated color="teal" raised size="massive">
+          <Input
+            ref={searchField => {
+              this.searchField = searchField;
+            }}
+            icon="btc"
+            transparent
+            iconPosition="left"
+            fluid
+            size="huge"
+            placeholder="Search for a crypto currency"
+          />
+        </Segment>
+      </Transition>
+    );
   }
 }
 
