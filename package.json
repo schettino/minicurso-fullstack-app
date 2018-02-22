@@ -5,7 +5,7 @@
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
-    "babel-eslint": "7.2.3",
+    "babel-eslint": "^8.2.2",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.2",
     "babel-preset-react-app": "^3.1.1",
@@ -20,8 +20,8 @@
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
     "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-react": "7.4.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
@@ -46,7 +46,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "prettier": "prettier --write \"src/**/*.js\""
   },
   "jest": {
     "collectCoverageFrom": [
@@ -88,6 +89,50 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "parser": "babel-eslint",
+    "extends": [
+      "react-app",
+      "prettier",
+      "prettier/flowtype",
+      "prettier/react"
+    ],
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true,
+      "es6": true
+    },
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "trailingComma": "all",
+          "bracketSpacing": false,
+          "jsxBracketSameLine": true,
+          "parser": "flow"
+        }
+      ],
+      "jsx-a11y/href-no-hash": "off",
+      "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
+    }
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "flow-bin": "^0.66.0",
+    "prettier": "^1.10.2"
   }
 }
