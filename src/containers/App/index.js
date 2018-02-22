@@ -4,6 +4,7 @@ import {Segment, Container} from 'semantic-ui-react';
 // import logo from '../../assets/logo.svg';
 
 import HomePage from '../HomePage';
+import CoinPage from '../CoinPage';
 import NotFoundPage from '../NotFoundPage';
 
 class App extends React.PureComponent {
@@ -14,6 +15,7 @@ class App extends React.PureComponent {
         <Segment basic padded as={Container}>
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/:coinName" component={CoinPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </Segment>
