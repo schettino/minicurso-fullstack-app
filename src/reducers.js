@@ -5,6 +5,7 @@
 import {combineReducers} from 'redux';
 import {LOCATION_CHANGE} from 'react-router-redux';
 import homeReducer from './containers/HomePage/reducer';
+import coinReducer from './containers/CoinPage/reducer';
 
 /*
  * routeReducer
@@ -31,5 +32,6 @@ export default function createReducer() {
   return combineReducers({
     route: routeReducer,
     home: homeReducer,
+    coinPage: coinReducer,
   });
 }
