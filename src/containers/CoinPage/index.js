@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {loadCoinInfo} from './actions';
 
 class CoinPage extends React.Component {
   componentWillMount() {
-    console.log(this.props);
+    const {dispatch, match} = this.props;
+    dispatch(loadCoinInfo(match.params.coinName));
   }
   render() {
     return <div />;

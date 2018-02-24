@@ -1,7 +1,13 @@
+import * as types from './constants';
+
 const initialState = {
   coin: {
+    algorithm: null,
+    coinName: null,
     id: null,
+    imageUrl: null,
     name: null,
+    totalCoinSupply: null,
     rank: null,
     volumeLastDayUSD: null,
     volumeLastDayBRL: null,
@@ -21,6 +27,8 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case types.LOAD_COIN_INFO:
+      return {...initialState};
     default:
       return state;
   }
